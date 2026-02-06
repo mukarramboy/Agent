@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy project files
-COPY pyproject.toml README.md ./
+COPY pyproject.toml ./
 COPY main.py tools.py ./
 
 # Install Python dependencies via pip
@@ -22,7 +22,6 @@ RUN useradd -m -s /bin/bash agent && \
 USER agent
 
 # Set environment variable for API key (should be passed at runtime)
-ENV GEMINI_API_KEY=""
 
 # Run the agent
 ENTRYPOINT ["python", "main.py"]
